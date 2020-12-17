@@ -15,7 +15,8 @@ exports.registerUser = async (req, res) => {
 // @route    POST /api/v1/auth/login
 // @access   Public
 exports.loginUser = async (req, res) => {
+  console.log(req.body);
+  console.log(req.cookies);
   const { email, password } = req.body;
-  console.log(email, password);
   res.end();
 };

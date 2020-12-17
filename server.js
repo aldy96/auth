@@ -1,5 +1,7 @@
 const express = require('express');
 const colors = require('colors');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 const connectDB = require('./config/db');
 
 // Routes
@@ -15,6 +17,16 @@ connectDB();
 // Init Middleware
 // Parse JSON
 app.use(express.json());
+// Express Session
+app.use(
+  session({
+    secret: 'secret',
+    saveUninitialized: true,
+    resave: true,
+  })
+);
+// Cookie parser
+app.use(cookieParser('secret'));
 
 // Moutn Routes
 app.use('/api/v1/auth', auth);
