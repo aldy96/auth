@@ -1,0 +1,36 @@
+{
+  "name": "mern__stateful_user_authentication_via_passport",
+  "version": "1.0.0",
+  "description": "Stateful user authentication in React via Passport",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dudek-igor/MERN__Stateful_User_Authentication_via_Passport.js.git"
+  },
+  "keywords": [
+    "MERN"
+  ],
+  "author": "Igor Dudek",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dudek-igor/MERN__Stateful_User_Authentication_via_Passport.js/issues"
+  },
+  "homepage": "https://github.com/dudek-igor/MERN__Stateful_User_Authentication_via_Passport.js#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mongoose": "^5.11.8",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
+  }
+}
