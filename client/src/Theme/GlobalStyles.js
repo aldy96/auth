@@ -12,6 +12,8 @@ const GlobalStyle = createGlobalStyle`
   body {
     background: ${({ theme }) => theme.body};
     color: ${({ theme }) => theme.mainText};
+    
+    min-height: 200vh;
   }
   h1,h2,h3{
     text-align: center;

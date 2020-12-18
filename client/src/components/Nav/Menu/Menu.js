@@ -1,25 +1,28 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useCallback } from 'react';
 
 // Style
-import { StyledButton } from '../../Buttons/Buttons';
-import { StyledMenuWrapper } from './Menu.styled';
+import { StyledMenu, StyledLink } from './Menu.styled';
 
-const Menu = () => {
+const MobileMenu = ({ open, setOpen }) => {
+  const handleOpen = useCallback(() => {
+    setOpen((open) => !open);
+  }, [setOpen]);
   return (
-    <StyledMenuWrapper>
-      <li>
-        <StyledButton as={Link} to='/'>
-          Home
-        </StyledButton>
-      </li>
-      <li>
-        <StyledButton as={Link} to='/login'>
-          Login
-        </StyledButton>
-      </li>
-    </StyledMenuWrapper>
+    <>
+      <StyledMenu open={open}>
+        <li>
+          <StyledLink to='/' onClick={handleOpen}>
+            Home
+          </StyledLink>
+        </li>
+        <li>
+          <StyledLink to='/login' onClick={handleOpen}>
+            Login
+          </StyledLink>
+        </li>
+      </StyledMenu>
+    </>
   );
 };
 
-export default Menu;
+export default MobileMenu;
