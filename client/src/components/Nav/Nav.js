@@ -1,18 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+
+// Components
+import Menu from './Menu/Menu';
+// Style
+import { StyledNavWrapper } from './Nav.styled';
 
 const Nav = () => {
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link to='/'>Home</Link>
-        </li>
-        <li>
-          <Link to='/login'>About</Link>
-        </li>
-      </ul>
-    </nav>
+    <StyledNavWrapper>
+      <Menu />
+    </StyledNavWrapper>
   );
 };
 
