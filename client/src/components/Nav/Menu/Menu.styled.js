@@ -1,7 +1,12 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export const StyledMenu = styled.ul`
+// Wrapper for Static Menu
+export const StyledStaticMenu = styled.ul`
+  display: flex;
+`;
+// Wrapper for MobileMenu
+export const StyledMobileMenu = styled.ul`
   position: fixed;
   top: 0;
   left: 0;
@@ -16,26 +21,36 @@ export const StyledMenu = styled.ul`
   transform: ${({ open }) => (open ? `translateX(0%)` : `translateX(-100%)`)};
   li {
     width: 100%;
-    padding: 0 64px;
-  }
-  @media (min-width: 801px) {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    transition-duration: 0ms;
-    transform: translateX(0%);
+    padding: 0 32px;
+    @media (min-width: 361px) {
+      padding: 0 64px;
+    }
   }
 `;
 
+// Link / Anchor for Menu
 export const StyledLink = styled(Link)`
-  font-size: 20px;
-  padding: 8px;
+  font-size: 24px;
+  padding: 8px 16px;
   background: ${({ theme }) => theme.mainColor};
   color: ${({ theme }) => theme.body};
   border-radius: 10px;
   @media (min-width: 801px) {
+    font-size: 16px;
+    padding: 4px 24px;
+    margin: 0px 16px;
     border: 2px solid ${({ theme }) => theme.mainColor};
-    background: transparent;
-    color: ${({ theme }) => theme.mainColor};
+    transition: all 300ms ease-in;
+    &:hover {
+      background: transparent;
+      color: ${({ theme }) => theme.mainColor};
+    }
+
+    ${({ secondary }) =>
+      secondary &&
+      css`
+        background: transparent;
+        color: ${({ theme }) => theme.mainColor};
+      `};
   }
 `;

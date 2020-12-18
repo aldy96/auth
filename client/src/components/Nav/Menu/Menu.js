@@ -1,15 +1,15 @@
 import React, { useCallback } from 'react';
 
 // Style
-import { StyledMenu, StyledLink } from './Menu.styled';
+import { StyledStaticMenu, StyledMobileMenu, StyledLink } from './Menu.styled';
 
-const MobileMenu = ({ open, setOpen }) => {
+export const MobileMenu = ({ open, setOpen }) => {
   const handleOpen = useCallback(() => {
     setOpen((open) => !open);
   }, [setOpen]);
   return (
     <>
-      <StyledMenu open={open}>
+      <StyledMobileMenu open={open}>
         <li>
           <StyledLink to='/' onClick={handleOpen}>
             Home
@@ -17,12 +17,25 @@ const MobileMenu = ({ open, setOpen }) => {
         </li>
         <li>
           <StyledLink to='/login' onClick={handleOpen}>
-            Login
+            Log In
           </StyledLink>
         </li>
-      </StyledMenu>
+      </StyledMobileMenu>
     </>
   );
 };
 
-export default MobileMenu;
+export const StaticMenu = (props) => (
+  <>
+    <StyledStaticMenu>
+      <li>
+        <StyledLink secondary={`true`} to='/'>
+          Home
+        </StyledLink>
+      </li>
+      <li>
+        <StyledLink to='/login'>Log In</StyledLink>
+      </li>
+    </StyledStaticMenu>
+  </>
+);

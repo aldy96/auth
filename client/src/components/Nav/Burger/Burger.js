@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import { StyledBurger } from './Burger.styled';
+
 const Burger = ({ open, setOpen }) => {
   const handleOpen = useCallback(() => {
     setOpen((open) => !open);
