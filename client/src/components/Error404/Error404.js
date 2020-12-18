@@ -1,27 +1,30 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import {
-  StyledWrapper,
-  StyledHeader,
-  StyledButton,
-  StyledLoader,
-} from './Error404.styled';
+import { withTheme } from 'styled-components';
+// Components
+import Button from '../Buttons/Buttons';
+import { StyledWrapper, StyledLoader } from './Error404.styled';
 
-const Error404 = () => {
+const Error404 = ({ theme }) => {
   const history = useHistory();
 
   return (
     <StyledWrapper>
-      <StyledHeader>Something Went Wrong</StyledHeader>
-      <StyledLoader type='Oval' color='#0074d9' height={80} width={80} />
-      <StyledButton primary type='button' onClick={() => history.goBack()}>
+      <h2>Something Went Wrong</h2>
+      <StyledLoader
+        type='Oval'
+        color={theme.mainColor}
+        height={80}
+        width={80}
+      />
+      <Button primary type='button' handleClick={() => history.goBack()}>
         Go Back
-      </StyledButton>
-      <StyledButton primary type='button' onClick={() => history.push('/')}>
+      </Button>
+      <Button primary handleClick={() => history.push('/')}>
         Go Home
-      </StyledButton>
+      </Button>
     </StyledWrapper>
   );
 };
 
-export default Error404;
+export default withTheme(Error404);
