@@ -17,6 +17,15 @@ const GlobalStyle = createGlobalStyle`
     text-align: center;
     margin: 16px 32px;
   }
+  a{
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: ${({ theme }) => theme.mainText};
+  }
+  ul {
+    list-style: none;
+  }
 `;
 
 export default GlobalStyle;

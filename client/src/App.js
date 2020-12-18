@@ -14,8 +14,8 @@ const App = () => {
     <Theme>
       <Router>
         <>
-          <Header />
           <Nav />
+          <Header />
           <Switch>
             <Route exact path='/' />
             <Route exact path='/login' />

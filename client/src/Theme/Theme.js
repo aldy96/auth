@@ -12,6 +12,7 @@ const lightTheme = {
   // gradient: 'linear-gradient(#39598A, #79D7ED)',
 };
 
+// eslint-disable-next-line no-unused-vars
 const darkTheme = {
   body: '#363537',
   mainText: '#FAFAFA',

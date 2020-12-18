@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
   width: 120px;
   margin: 16px;
   padding: 4px 24px;
@@ -44,4 +44,4 @@ Button.defaultProps = {
   primary: false,
 };
 
-export default Button;
+// export default Button;

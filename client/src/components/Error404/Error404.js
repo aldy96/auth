@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { withTheme } from 'styled-components';
 // Components
-import Button from '../Buttons/Buttons';
+import { Button } from '../Buttons/Buttons';
 import { StyledWrapper, StyledLoader } from './Error404.styled';
 
 const Error404 = ({ theme }) => {
@@ -27,7 +27,7 @@ const Error404 = ({ theme }) => {
         height={80}
         width={80}
       />
-      <Button type='button' handleClick={goBack}>
+      <Button primary type='button' handleClick={goBack}>
         Go Back
       </Button>
       <Button primary handleClick={goToMainPage}>
