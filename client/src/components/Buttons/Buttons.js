@@ -7,17 +7,17 @@ const StyledButton = styled.button`
   margin: 16px;
   padding: 4px 24px;
   background: transparent;
-  border: 2px solid #0074d9;
+  border: 2px solid ${({ theme }) => theme.mainColor};
   border-radius: 10px;
-  color: #0074d9;
+  color: ${({ theme }) => theme.mainColor};
   cursor: pointer;
 
   ${({ primary }) =>
     primary &&
     css`
       box-shadow: 0px 17px 10px -10px rgba(0, 0, 0, 0.4);
-      background: #0074d9;
-      color: white;
+      background: ${({ theme }) => theme.mainColor};
+      color: ${({ theme }) => theme.body};
       transition: all ease-in-out 300ms;
       &:hover {
         box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);

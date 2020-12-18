@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { withTheme } from 'styled-components';
 // Components
@@ -7,6 +7,16 @@ import { StyledWrapper, StyledLoader } from './Error404.styled';
 
 const Error404 = ({ theme }) => {
   const history = useHistory();
+
+  // go Back
+  const goBack = useCallback(() => {
+    history.goBack();
+  }, [history]);
+  // go to Main Page
+  const goToMainPage = useCallback(() => {
+    history.push('/');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <StyledWrapper>
@@ -17,10 +27,10 @@ const Error404 = ({ theme }) => {
         height={80}
         width={80}
       />
-      <Button primary type='button' handleClick={() => history.goBack()}>
+      <Button type='button' handleClick={goBack}>
         Go Back
       </Button>
-      <Button primary handleClick={() => history.push('/')}>
+      <Button primary handleClick={goToMainPage}>
         Go Home
       </Button>
     </StyledWrapper>
