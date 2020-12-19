@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 // Wrapper for Static Menu
 export const StyledStaticMenu = styled.ul`
   display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 // Wrapper for MobileMenu
 export const StyledMobileMenu = styled.ul`

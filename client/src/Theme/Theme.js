@@ -6,7 +6,7 @@ import { useDarkMode } from '../CustomHooks/useDarkMode';
 
 // Light Theme
 const lightTheme = {
-  body: '#f9f9f9',
+  body: '#efefef',
   mainText: '#363537',
   // secondaryText: '#ffffff',
   mainColor: '#0074d9',
@@ -17,7 +17,7 @@ const lightTheme = {
 // Dark Theme
 const darkTheme = {
   body: '#363537',
-  mainText: '#FAFAFA',
+  mainText: '#efefef',
   // secondaryText: '#ffffff',
   mainColor: '#0074d9',
   // secondaryColor: '#0074d9',

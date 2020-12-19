@@ -31,6 +31,7 @@ export const StaticMenu = () => (
   <>
     <StyledStaticMenu>
       <li>
+        {/* We have to do it like this because Link adds secondary='true' into DOM  */}
         <StyledLink secondary={`true`} to='/'>
           Home
         </StyledLink>
