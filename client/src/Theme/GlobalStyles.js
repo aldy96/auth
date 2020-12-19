@@ -10,9 +10,12 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Montserrat', sans-serif;
 }
   body {
-    background: ${({ theme }) => theme.body};
+    background-color: ${({ theme }) => theme.body};
     color: ${({ theme }) => theme.mainText};
-    
+    // User do not see transition when open app/site
+    transition: ${({ isMounted }) =>
+      isMounted &&
+      `color 250ms ease-in-out, background-color 250ms ease-in-out`};
     min-height: 200vh;
   }
   h1,h2,h3{

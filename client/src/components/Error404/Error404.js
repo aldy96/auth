@@ -7,7 +7,6 @@ import { StyledWrapper, StyledLoader } from './Error404.styled';
 
 const Error404 = ({ theme }) => {
   const history = useHistory();
-
   // go Back
   const goBack = useCallback(() => {
     history.goBack();

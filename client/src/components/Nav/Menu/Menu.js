@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
-
+// Components
+import ThemeToggler from '../ThemeToggler/ThemeToggler';
 // Style
 import { StyledStaticMenu, StyledMobileMenu, StyledLink } from './Menu.styled';
 
@@ -20,12 +21,13 @@ export const MobileMenu = ({ open, setOpen }) => {
             Log In
           </StyledLink>
         </li>
+        <li>{/* <ThemeToggler /> */}</li>
       </StyledMobileMenu>
     </>
   );
 };
 
-export const StaticMenu = (props) => (
+export const StaticMenu = () => (
   <>
     <StyledStaticMenu>
       <li>
@@ -35,6 +37,9 @@ export const StaticMenu = (props) => (
       </li>
       <li>
         <StyledLink to='/login'>Log In</StyledLink>
+      </li>
+      <li>
+        <ThemeToggler />
       </li>
     </StyledStaticMenu>
   </>

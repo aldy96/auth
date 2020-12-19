@@ -32,7 +32,7 @@ export const StyledMobileMenu = styled.ul`
 export const StyledLink = styled(Link)`
   font-size: 24px;
   padding: 8px 16px;
-  background: ${({ theme }) => theme.mainColor};
+  background-color: ${({ theme }) => theme.mainColor};
   color: ${({ theme }) => theme.body};
   border-radius: 10px;
   @media (min-width: 801px) {
@@ -40,9 +40,9 @@ export const StyledLink = styled(Link)`
     padding: 4px 24px;
     margin: 0px 16px;
     border: 2px solid ${({ theme }) => theme.mainColor};
-    transition: all 300ms ease-in;
+    transition: all 250ms ease-in-out;
     &:hover {
-      background: transparent;
+      background-color: transparent;
       color: ${({ theme }) => theme.mainColor};
     }
 

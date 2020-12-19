@@ -2,16 +2,16 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 // Theme with GlobalStyle
-import Theme from './Theme/Theme';
+import AppTheme from './Theme/Theme';
 // Components
-import Nav from './components/Nav/Nav';
-import Header from './components/Header/Header';
+import Nav from './Components/Nav/Nav';
+import Header from './Components/Header/Header';
 // Views
-import Error404 from './components/Error404/Error404';
+import Error404 from './Components/Error404/Error404';
 
 const App = () => {
   return (
-    <Theme>
+    <AppTheme>
       <Router>
         <>
           <Nav />
@@ -24,7 +24,7 @@ const App = () => {
           </Switch>
         </>
       </Router>
-    </Theme>
+    </AppTheme>
   );
 };
 
