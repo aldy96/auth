@@ -11,22 +11,23 @@ const GlobalStyle = createGlobalStyle`
 }
   body {
     background-color: ${({ theme }) => theme.body};
-    color: ${({ theme }) => theme.mainText};
+    color: ${({ theme }) => theme.mainTextColor};
     // User do not see transition when open app/site
-    transition: ${({ isMounted }) =>
-      isMounted &&
-      `color 250ms ease-in-out, background-color 250ms ease-in-out`};
-    min-height: 200vh;
+    transition: ${({ isMounted, theme }) => isMounted && theme.themeTransition};
   }
-  h1,h2,h3{
+  h1{
     text-align: center;
-    margin: 16px 32px;
+    margin: 48px;
+  }
+  h2,h3{
+    text-align: center;
+    margin: 32px;
   }
   a{
     display: block;
     text-align: center;
     text-decoration: none;
-    color: ${({ theme }) => theme.mainText};
+    color: ${({ theme }) => theme.mainTextColor};
   }
   ul {
     list-style: none;

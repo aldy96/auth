@@ -1,13 +1,13 @@
 import React from 'react';
 import { FaNodeJs } from 'react-icons/fa';
 //Style
-import { StyledWrapperLogo } from './Logo.styled';
+import { StyledLogo } from './Logo.styled';
 
 const Logo = () => {
   return (
-    <StyledWrapperLogo to='/'>
+    <StyledLogo to='/'>
       <FaNodeJs />
-    </StyledWrapperLogo>
+    </StyledLogo>
   );
 };
 

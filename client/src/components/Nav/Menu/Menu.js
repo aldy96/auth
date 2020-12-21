@@ -1,9 +1,14 @@
 import React, { useCallback } from 'react';
-// Components
 import ThemeToggler from '../ThemeToggler/ThemeToggler';
 // Style
-import { StyledStaticMenu, StyledMobileMenu, StyledLink } from './Menu.styled';
+import {
+  StyledStaticMenu,
+  StyledStaticLink,
+  StyledMobileMenu,
+  StyledMobileLink,
+} from './Menu.styled';
 
+// Menu for Mobile
 export const MobileMenu = ({ open, setOpen }) => {
   const handleOpen = useCallback(() => {
     setOpen((open) => !open);
@@ -12,35 +17,37 @@ export const MobileMenu = ({ open, setOpen }) => {
     <>
       <StyledMobileMenu open={open}>
         <li>
-          <StyledLink to='/' onClick={handleOpen}>
-            Home
-          </StyledLink>
+          <ThemeToggler />
         </li>
         <li>
-          <StyledLink to='/login' onClick={handleOpen}>
-            Log In
-          </StyledLink>
+          <StyledMobileLink exact to='/' onClick={handleOpen}>
+            Home
+          </StyledMobileLink>
         </li>
-        <li>{/* <ThemeToggler /> */}</li>
+        <li>
+          <StyledMobileLink exact to='/login' onClick={handleOpen}>
+            Log In
+          </StyledMobileLink>
+        </li>
       </StyledMobileMenu>
     </>
   );
 };
 
+// Menu for Desctop / Static
 export const StaticMenu = () => (
   <>
     <StyledStaticMenu>
       <li>
         {/* We have to do it like this because Link adds secondary='true' into DOM  */}
-        <StyledLink secondary={`true`} to='/'>
+        <StyledStaticLink exact to='/'>
           Home
-        </StyledLink>
+        </StyledStaticLink>
       </li>
       <li>
-        <StyledLink to='/login'>Log In</StyledLink>
-      </li>
-      <li>
-        <ThemeToggler />
+        <StyledStaticLink exact secondary={`true`} to='/login'>
+          Log In
+        </StyledStaticLink>
       </li>
     </StyledStaticMenu>
   </>

@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react';
 // Components
 import { MobileMenu, StaticMenu } from './Menu/Menu';
 import Burger from './Burger/Burger';
-// import Logo from './Logo/Logo';
+import Logo from './Logo/Logo';
+import ThemeToggler from './ThemeToggler/ThemeToggler';
 
 // Style
 import { StyledNavWrapper } from './Nav.styled';
@@ -32,19 +33,17 @@ const Nav = () => {
       });
     };
   }, []);
+  // All Navigation depend on window width */
   return (
-    <StyledNavWrapper>
-      {/* <Logo /> */}
-      {/* Menu depend on window width */}
-      {isMobile ? (
-        <>
-          <MobileMenu open={open} setOpen={setOpen} />
-          <Burger open={open} setOpen={setOpen} />
-        </>
-      ) : (
-        <StaticMenu />
-      )}
-    </StyledNavWrapper>
+    <>
+      <StyledNavWrapper>
+        <Logo />
+        {!isMobile && <ThemeToggler />}
+        {isMobile && <Burger open={open} setOpen={setOpen} />}
+        {!isMobile && <StaticMenu />}
+      </StyledNavWrapper>
+      {isMobile && <MobileMenu open={open} setOpen={setOpen} />}
+    </>
   );
 };
 

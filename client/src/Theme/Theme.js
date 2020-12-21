@@ -4,25 +4,33 @@ import { ThemeProvider } from 'styled-components';
 // Custom Hook
 import { useDarkMode } from '../CustomHooks/useDarkMode';
 
+// Global styles for Light and Dark Theme
+const stylesForBothTheme = {
+  themeTransition: 'all 250ms ease-in-out',
+};
+
 // Light Theme
 const lightTheme = {
-  body: '#efefef',
-  mainText: '#363537',
+  ...stylesForBothTheme,
+  isLight: true,
+  body: '#eeeeee',
+  secondaryColor: '#e1e1e1',
+  oppositeColor: '#5e5d5e',
+  mainTextColor: '#252526',
   // secondaryText: '#ffffff',
-  mainColor: '#0074d9',
-  // secondaryColor: '#0074d9',
-  // toggleBorder: '#FFF',
-  // gradient: 'linear-gradient(#39598A, #79D7ED)',
+  mainColor: '#0066c0',
 };
 // Dark Theme
 const darkTheme = {
-  body: '#363537',
-  mainText: '#efefef',
+  ...stylesForBothTheme,
+  isLight: false,
+  body: '#a6a6a6',
+  secondaryColor: '#5e5d5e',
+  oppositeColor: '#e1e1e1',
+  mainTextColor: '#1b1a1b',
   // secondaryText: '#ffffff',
-  mainColor: '#0074d9',
+  mainColor: '#0d8eff',
   // secondaryColor: '#0074d9',
-  // toggleBorder: '#6B8096',
-  // gradient: 'linear-gradient(#091236, #1E215D)',
 };
 
 // First option is add themeToggler to the theme object and share it through ThemeProvider from 'styled-components'

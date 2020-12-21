@@ -1,58 +1,71 @@
 import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 // Wrapper for Static Menu
 export const StyledStaticMenu = styled.ul`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  grid-column: 2 / -1;
+  grid-row: 2 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, 10vw);
+  grid-gap: 5vw;
+  justify-content: end;
+  align-content: center;
+  padding: 2px 0px;
 `;
-// Wrapper for MobileMenu
+// Link / Anchor for Static Menu
+export const StyledStaticLink = styled(NavLink)`
+  padding: 2px 0px;
+  color: ${({ theme }) => theme.oppositeColor};
+  border: 2px solid ${({ theme }) => theme.oppositeColor};
+  border-radius: 10px;
+  transition: ${({ theme }) => theme.themeTransition};
+  box-shadow: 0px 15px 10px -10px rgba(0, 0, 0, 0.3);
+  ${({ secondary }) =>
+    secondary &&
+    css`
+      border: 2px solid ${({ theme }) => theme.mainColor};
+      color: ${({ theme }) => theme.mainColor};
+    `};
+  &.active {
+    box-shadow: 0px 15px 10px -10px rgba(0, 0, 0, 0.9);
+  }
+  &:hover {
+    transform: translateY(2px);
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
+  }
+`;
+
+// Wrapper for Mobile Menu
 export const StyledMobileMenu = styled.ul`
   position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: ${({ theme }) => theme.body};
+  // 80 px = 64px from highest label and 8px * 2 from top and bottom padding
+  height: calc(100vh - 80px);
+  width: 100vw;
+  background-color: ${({ theme }) => theme.secondaryColor};
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
-  transition: transform 300ms ease-in;
+  justify-content: flex-start;
+  transition: ${({ theme }) => theme.themeTransition};
   transform: ${({ open }) => (open ? `translateX(0%)` : `translateX(-100%)`)};
-  li {
-    width: 100%;
-    padding: 0 32px;
-    @media (min-width: 361px) {
-      padding: 0 64px;
-    }
+  li:first-child {
+    align-self: flex-end;
+    padding: 2px 20px;
+    /* margin: 0px 20px; */
   }
 `;
 
 // Link / Anchor for Menu
-export const StyledLink = styled(Link)`
+export const StyledMobileLink = styled(NavLink)`
+  width: 80vw;
   font-size: 24px;
-  padding: 8px 16px;
-  background-color: ${({ theme }) => theme.mainColor};
-  color: ${({ theme }) => theme.body};
+  border: 2px solid ${({ theme }) => theme.oppositeColor};
+  color: ${({ theme }) => theme.oppositeColor};
+  padding: 2px 0px;
   border-radius: 10px;
-  @media (min-width: 801px) {
-    font-size: 16px;
-    padding: 4px 24px;
-    margin: 0px 16px;
-    border: 2px solid ${({ theme }) => theme.mainColor};
-    transition: all 250ms ease-in-out;
-    &:hover {
-      background-color: transparent;
-      color: ${({ theme }) => theme.mainColor};
-    }
-
-    ${({ secondary }) =>
-      secondary &&
-      css`
-        background: transparent;
-        color: ${({ theme }) => theme.mainColor};
-      `};
+  margin: 20px;
+  &.active {
+    box-shadow: 0px 15px 10px -10px rgba(0, 0, 0, 0.4);
   }
 `;

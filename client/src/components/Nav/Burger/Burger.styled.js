@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const StyledBurger = styled.button`
-  position: fixed;
-  top: 16px;
-  right: 16px;
+  grid-column: span 1 / -1;
+  grid-row: 1 / span 1;
+  place-self: center;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -22,7 +22,7 @@ export const StyledBurger = styled.button`
   div {
     width: 100%;
     height: 4px;
-    background: ${({ theme }) => theme.mainText};
+    background: ${({ theme }) => theme.oppositeColor};
     border-radius: 10px;
     transition: all 0.3s linear;
     position: relative;
