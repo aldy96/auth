@@ -6,7 +6,8 @@ import { useDarkMode } from '../CustomHooks/useDarkMode';
 
 // Global styles for Light and Dark Theme
 const stylesForBothTheme = {
-  themeTransition: 'all 250ms ease-in-out',
+  // Do not add all !!!
+  themeTransition: '250ms ease-in-out',
 };
 
 // Light Theme
@@ -19,6 +20,7 @@ const lightTheme = {
   mainTextColor: '#252526',
   // secondaryText: '#ffffff',
   mainColor: '#0066c0',
+  errorColor: '#ed4337',
 };
 // Dark Theme
 const darkTheme = {
@@ -31,6 +33,7 @@ const darkTheme = {
   // secondaryText: '#ffffff',
   mainColor: '#0d8eff',
   // secondaryColor: '#0074d9',
+  errorColor: '#FFBABA',
 };
 
 // First option is add themeToggler to the theme object and share it through ThemeProvider from 'styled-components'

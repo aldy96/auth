@@ -21,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
   }
   h2,h3{
     text-align: center;
-    margin: 32px;
+    margin: 16px 0;
   }
   a{
     display: block;

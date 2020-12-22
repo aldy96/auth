@@ -8,7 +8,7 @@ const User = require('../models/User');
 exports.registerUser = async (req, res) => {
   const { email, password } = req.body;
   console.log(email, password);
-  res.end();
+  res.send('ok');
 };
 
 // @desc     Login User
@@ -18,5 +18,5 @@ exports.loginUser = async (req, res) => {
   console.log(req.body);
   console.log(req.cookies);
   const { email, password } = req.body;
-  res.end();
+  res.send('ok');
 };

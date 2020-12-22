@@ -10,8 +10,8 @@ import Header from './Components/Header/Header';
 import ProtectedRoute from './Utils/ProtectedRoute';
 // Views
 import Error404 from './Views/Error404/Error404';
-import Login from './Views/Login/Login';
-import Register from './Views/Register/Register';
+import Login from './Views/Login&Register/Login';
+import Register from './Views/Login&Register/Register';
 import Dashboard from './Views/Dashboard/Dashboard';
 const App = () => {
   // Simulated Logged User
