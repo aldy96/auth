@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Form, Field } from 'react-final-form';
 import { Link } from 'react-router-dom';
@@ -17,24 +17,45 @@ import {
 const validEmail = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 
 const Register = ({ isLogged }) => {
+  // State for Errors
+  const [errorFromBackEnd, setErrorFromBackEnd] = useState();
+  // State for Successful Created user
+  const [isCreatedUser, setCreatedUser] = useState(false);
+
+  // handle submit to form
   const onSubmit = async (formValues) => {
-    console.log('submit');
     try {
-      const res = await axios.post('/api/v1/auth/login', formValues);
-      console.log(res);
+      // Make request
+      const { data } = await axios.post('/api/v1/auth/register', formValues);
+      // If ok clear error & redirected to login page
+      setErrorFromBackEnd('');
+      setCreatedUser(data.success);
     } catch (error) {
-      console.log(error);
+      // Clear previus error
+      setErrorFromBackEnd('');
+      // We can use Error Boundaries but for now we use useState
+      if (error.response.data.error) {
+        // Custom error from BackEnd
+        setErrorFromBackEnd(error.response.data.error);
+      } else {
+        // In any other case
+        setErrorFromBackEnd('Server Error, Please try again later.');
+      }
     }
   };
 
   return (
     <>
-      {isLogged ? (
-        <Redirect to='/dashboard' />
+      {/* If user already logged, redirected to dashboard */}
+      {isLogged && <Redirect to='/dashboard' />}
+      {/* If Successful Created user,  redirected to login*/}
+      {isCreatedUser ? (
+        <Redirect to='/login' />
       ) : (
         <StyledFormWrapper>
           <Form
             onSubmit={onSubmit}
+            // FrontEnd Validation
             validate={({ email, password, password2 }) => {
               const errors = {};
               // email
@@ -57,6 +78,7 @@ const Register = ({ isLogged }) => {
             }}
             render={({ handleSubmit }) => (
               <StyledForm onSubmit={handleSubmit}>
+                {errorFromBackEnd && <Error primary>{errorFromBackEnd}</Error>}
                 <Field name='email'>
                   {({ input, meta }) => (
                     <>

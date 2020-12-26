@@ -25,7 +25,7 @@ const App = () => {
           <Switch>
             <Route exact path='/' />
             <Route path='/login'>
-              <Login isLogged={isLogged} />
+              <Login setLogged={setLogged} isLogged={isLogged} />
             </Route>
             <Route path='/register'>
               <Register isLogged={isLogged} />
