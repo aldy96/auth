@@ -4,8 +4,8 @@ export const StyledToggleButton = styled.button`
   align-self: center;
   justify-self: end;
   width: 5vw;
-  height: 50%;
-  max-height: 20px;
+  height: 1vh;
+  min-height: 20px;
   background-color: transparent;
   cursor: pointer;
   border: 2px solid ${({ theme }) => theme.oppositeColor};
@@ -17,11 +17,11 @@ export const StyledToggleButton = styled.button`
   @media (max-width: 800px) {
     width: 20vw;
     max-width: 50px;
-    height: 100%;
   } ;
 `;
 export const Indicator = styled.div`
-  height: 100%;
+  height: calc(1vh - 10px);
+  min-height: calc(20px - 10px);
   // if you change width, change transform too
   width: 25%;
   transition: ${({ theme }) => theme.themeTransition};

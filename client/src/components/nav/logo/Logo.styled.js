@@ -12,7 +12,8 @@ export const StyledLogo = styled(Link)`
     // Responsive SVG
     width: auto;
     max-width: 100%;
-    height: 100%;
+    min-height: 48px;
+    height: 10vh;
     fill: ${({ theme }) => theme.mainColor};
   }
 `;

@@ -48,6 +48,7 @@ export const InputWrapper = styled.div`
   row-gap: 2vh;
   align-items: center;
   input {
+    min-height: 20px;
     padding: 0.5vw;
   }
   input::placeholder {
