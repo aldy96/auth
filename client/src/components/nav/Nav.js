@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { MobileMenu, StaticMenu } from './menu/Menu';
 import Burger from './burger/Burger';
 import Logo from './logo/Logo';
-import ThemeToggler from './themeToggler/ThemeToggler';
+import ThemeToggler from './themetoggler/ThemeToggler';
 
 // Style
 import { StyledNavWrapper } from './Nav.styled';
