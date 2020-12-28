@@ -9,7 +9,7 @@ import {
 } from './Menu.styled';
 
 // Menu for Mobile
-export const MobileMenu = ({ open, setOpen }) => {
+export const MobileMenu = ({ isLogged, open, setOpen }) => {
   const handleOpen = useCallback(() => {
     setOpen((open) => !open);
   }, [setOpen]);
@@ -26,7 +26,7 @@ export const MobileMenu = ({ open, setOpen }) => {
         </li>
         <li>
           <StyledMobileLink exact to='/login' onClick={handleOpen}>
-            Log In
+            {isLogged ? 'Account' : 'Log In'}
           </StyledMobileLink>
         </li>
       </StyledMobileMenu>
@@ -35,7 +35,7 @@ export const MobileMenu = ({ open, setOpen }) => {
 };
 
 // Menu for Desctop / Static
-export const StaticMenu = () => (
+export const StaticMenu = ({ isLogged }) => (
   <>
     <StyledStaticMenu>
       <li>
@@ -46,7 +46,7 @@ export const StaticMenu = () => (
       </li>
       <li>
         <StyledStaticLink exact secondary={`true`} to='/login'>
-          Log In
+          {isLogged ? 'Account' : 'Log In'}
         </StyledStaticLink>
       </li>
     </StyledStaticMenu>

@@ -9,7 +9,7 @@ import ThemeToggler from './ThemeToggler/ThemeToggler';
 // Style
 import { StyledNavWrapper } from './Nav.styled';
 
-const Nav = () => {
+const Nav = ({ isLogged }) => {
   // State for open/close mobile menu
   const [open, setOpen] = useState(false);
   // State for Mobile/Static Menu
@@ -40,9 +40,11 @@ const Nav = () => {
         <Logo />
         {!isMobile && <ThemeToggler />}
         {isMobile && <Burger open={open} setOpen={setOpen} />}
-        {!isMobile && <StaticMenu />}
+        {!isMobile && <StaticMenu isLogged={isLogged} />}
       </StyledNavWrapper>
-      {isMobile && <MobileMenu open={open} setOpen={setOpen} />}
+      {isMobile && (
+        <MobileMenu isLogged={isLogged} open={open} setOpen={setOpen} />
+      )}
     </>
   );
 };
