@@ -9,7 +9,7 @@ import StyledLoader from './components/loader/Loader';
 
 // Views
 import Error404 from './views/error404/Error404';
-import Login from './views/loginandregister/Register';
+import Login from './views/loginandregister/Login';
 import Register from './views/loginandregister/Register';
 import Dashboard from './views/dashboard/Dashboard';
 // Theme with GlobalStyle
