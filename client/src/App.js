@@ -2,19 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
 
-// Theme with GlobalStyle
-import AppTheme from './theme/Theme';
 // Components
 import Nav from './components/nav/Nav';
 import Header from './components/header/Header';
 import StyledLoader from './components/loader/Loader';
-//Utils
-import ProtectedRoute from './utils/ProtectedRoute';
+
 // Views
 import Error404 from './views/error404/Error404';
 import Login from './views/login&register/Login';
 import Register from './views/login&register/Register';
 import Dashboard from './views/dashboard/Dashboard';
+// Theme with GlobalStyle
+import AppTheme from './theme/Theme';
+//Utils
+import ProtectedRoute from './utils/ProtectedRoute';
+
 const App = () => {
   // Simulated Logged User
   const [isLogged, setLogged] = useState();
