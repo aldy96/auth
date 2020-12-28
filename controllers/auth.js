@@ -80,6 +80,13 @@ exports.checkSession = (req, res) => {
 // @route    GET /api/v1/auth/logout
 // @access   Public
 exports.logoutUser = (req, res) => {
+  // 1. Clear Active Session in Passport
   req.logout();
-  res.status(200).json({ success: true });
+  // 2. Clear Session in Mongo Store
+  req.session.destroy();
+  // 3. Delete unnecessary cookie
+  res
+    .status(200)
+    .clearCookie('connect.sid', { path: '/' })
+    .json({ success: true });
 };
