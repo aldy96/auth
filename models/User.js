@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 const UserSchema = new mongoose.Schema({
   email: {
@@ -17,5 +18,10 @@ const UserSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
+
+// Match user password to hashed password in DB
+UserSchema.methods.matchPassword = async function (enteredPassword) {
+  return await bcrypt.compare(`${enteredPassword}`, this.password);
+};
 
 module.exports = mongoose.model('User', UserSchema);

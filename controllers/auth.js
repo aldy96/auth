@@ -4,7 +4,7 @@ const passport = require('passport');
 
 // Methods
 
-// @desc     Create User
+// @desc     Create/Register User
 // @route    POST /api/v1/auth/register
 // @access   Public
 exports.registerUser = async (req, res) => {
@@ -27,7 +27,7 @@ exports.registerUser = async (req, res) => {
     // 5. if everything ok ...
     return res.status(201).json({ success: true });
   } catch (error) {
-    // console.error(error);
+    console.error(error);
     return res.status(500).send('Server Error');
   }
 };
@@ -35,20 +35,51 @@ exports.registerUser = async (req, res) => {
 // @desc     Login User
 // @route    POST /api/v1/auth/login
 // @access   Public
-exports.loginUser = async (req, res, next) => {
-  // console.log(req.user);
+exports.loginUser = (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
-    if (err) throw err;
-    if (!user) res.json({ error: 'No User Exists' });
+    // 1. Took msg from info passed from LocalStrategy config
+    const { msg } = info;
+    // 2. If error = success: false
+    if (err) {
+      console.error(err);
+      res
+        .status(err.statusCode || 500)
+        .json({ success: false, error: `Server Error` });
+    }
+    // 3. If we do not found user = success: false
+    if (!user) res.status(401).json({ success: false, error: msg });
     else {
-      // console.log(user);
       req.login(user, (err) => {
-        if (err) throw err;
-        res.send('Successfully Authenticated');
-        // console.log(req.user);
-        // console.log(user);
+        // 4. If error when login
+        if (err) {
+          console.error(err);
+          res
+            .status(err.statusCode || 500)
+            .json({ success: false, error: `Server Error` });
+        }
+        // 5. Finally If everything ok ...
+        res.status(200).json({ success: true, msg });
       });
-      // console.log(req.session.passport);
     }
   })(req, res, next);
+};
+
+// @desc     Check active user session
+// @route    GET /api/v1/auth
+// @access   Public
+exports.checkSession = (req, res) => {
+  if (req.isAuthenticated()) {
+    //req.isAuthenticated() will return true if user is logged in
+    res.status(200).json({ success: true });
+  } else {
+    res.status(403).json({ success: false });
+  }
+};
+
+// @desc     Logout User
+// @route    GET /api/v1/auth/logout
+// @access   Public
+exports.logoutUser = (req, res) => {
+  req.logout();
+  res.status(200).json({ success: true });
 };

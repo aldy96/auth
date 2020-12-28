@@ -1,47 +1,51 @@
 const User = require('../models/User');
-const bcrypt = require('bcryptjs');
 const LocalStrategy = require('passport-local').Strategy;
 
 // Why we pass instances of passport to functions when we call it  ??
 // Bc we want the same instane of passort in our entire appliaction
-module.exports = function (passport) {
+module.exports = (passport) => {
   passport.use(
-    new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
-      // Match user ()
-      User.findOne({
-        email: email,
-      })
-        // We need password
-        .select('+password')
-        .then((user) => {
-          // if we didn't find user by email, return msg
+    new LocalStrategy(
+      { usernameField: 'email' }, // we show that we have an email field like username
+      async (email, password, done) => {
+        try {
+          // 1. Looking for User & his paassword in DB by email
+          const user = await User.findOne({ email }).select('+password');
+          // 2. Checking if user exists
           if (!user) {
             return done(null, false, {
-              message: 'That email is not registered',
+              // If not exist stop function and return msg to login control
+              msg: 'That email is not registered',
             });
           }
-          // if we have user, compare his password
-          bcrypt.compare(password.toString(), user.password, (err, isMatch) => {
-            if (err) throw err;
-            if (isMatch) {
-              // if comapre return user
-              return done(null, user);
-            } else {
-              // if password is incorrect, return msg
-              return done(null, false, { message: 'Incorrect Password' });
-            }
-          });
-        });
-      passport.serializeUser(function (user, done) {
-        console.log(user);
-        done(null, user.id);
-      });
-
-      passport.deserializeUser(function (id, done) {
-        User.findById(id, function (err, user) {
-          done(err, user);
-        });
-      });
-    })
+          // 3. Comparing password from form with password from DB
+          // Using method from UserSchema
+          const isMatch = await user.matchPassword(password);
+          if (isMatch) {
+            // If is match stop function adn return user to login control
+            return done(null, user, { msg: 'User Found' });
+          } else {
+            // If not exist stop function and return msg to login control
+            return done(null, false, { msg: 'Incorrect Password' });
+          }
+        } catch (error) {
+          // If error with connection with DB return msg  to login control
+          console.error(error);
+          return done(null, false, { msg: 'Server Error' });
+        }
+      }
+    )
   );
+  // Serialize only user id
+  passport.serializeUser(function (user, done) {
+    done(null, user.id);
+  });
+  // Deserialize by user id
+  passport.deserializeUser((id, done) => {
+    User.findById(id)
+      .then((user) => {
+        done(null, user);
+      })
+      .catch((err) => done(err));
+  });
 };

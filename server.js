@@ -4,9 +4,13 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const connectDB = require('./config/db');
+const mongoose = require('mongoose');
 
+// Create Session Store
+const MongoStore = require('connect-mongo')(session);
 // Routes Controlls Methods
 const auth = require('./routes/auth');
+const user = require('./routes/user');
 
 //---------END OF IMPORTS------------//
 
@@ -16,41 +20,43 @@ require('dotenv').config();
 // Init server & connect with MongoDB
 const app = express();
 connectDB();
-console.log(app.get('env'));
+
 // Init Middleware
 // Parse JSON
 app.use(express.json());
 // Parse Body
 express.urlencoded({ extended: true });
+// Cookie parser with secret, do not need since version 1.5.0 express session
+// app.use(cookieParser('secret'));
+
 // Express Session
 app.use(
   session({
-    secret: 'secret',
+    secret: process.env.secret,
     saveUninitialized: true,
-    resave: true,
+    resave: false,
+    // Default store is only for debug - Save session in MongoDB
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      collection: 'sessions',
+    }),
     cookie: {
       maxAge: 1000 * 60 * 60 * 24, // one day
     },
   })
 );
-// Cookie parser with secret
-app.use(cookieParser('secret'));
+
+// Added & Init Passport Local Config for entire App
+require('./config/passportConfig')(passport);
 // Init passport & session
 app.use(passport.initialize());
 app.use(passport.session());
-// Added & Init Passport Config for entire App
-require('./config/passportConfig')(passport);
 
 //---------END OF Middlewares & Config------------//
 
 // Moutn Routes
 app.use('/api/v1/auth', auth);
-app.get('/api/v1/user', (req, res) => {
-  console.log(req.login);
-  console.log(req.logout);
-  console.log(req.isAuthenticated);
-  console.log(req.isUnauthenticated);
-});
+app.use('/api/v1/user', user);
 //---------END OF Routes------------//
 
 // Handle App Listening
