@@ -2,7 +2,7 @@ import React from 'react';
 import GlobalStyle from './GlobalStyles';
 import { ThemeProvider } from 'styled-components';
 // Custom Hook
-import { useDarkMode } from '../customHooks/useDarkMode';
+import { useDarkMode } from '../customhooks/useDarkMode';
 
 // Global styles for Light and Dark Theme
 const stylesForBothTheme = {
