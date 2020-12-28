@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
 // Components
-import { MobileMenu, StaticMenu } from './Menu/Menu';
-import Burger from './Burger/Burger';
-import Logo from './Logo/Logo';
-import ThemeToggler from './ThemeToggler/ThemeToggler';
+import { MobileMenu, StaticMenu } from './menu/Menu';
+import Burger from './burger/Burger';
+import Logo from './logo/Logo';
+import ThemeToggler from './themeToggler/ThemeToggler';
 
 // Style
 import { StyledNavWrapper } from './Nav.styled';

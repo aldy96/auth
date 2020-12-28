@@ -3,18 +3,18 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
 
 // Theme with GlobalStyle
-import AppTheme from './Theme/Theme';
+import AppTheme from './theme/Theme';
 // Components
-import Nav from './Components/Nav/Nav';
-import Header from './Components/Header/Header';
-import StyledLoader from './Components/Loader/Loader';
+import Nav from './components/nav/Nav';
+import Header from './components/header/Header';
+import StyledLoader from './components/loader/Loader';
 //Utils
-import ProtectedRoute from './Utils/ProtectedRoute';
+import ProtectedRoute from './utils/ProtectedRoute';
 // Views
-import Error404 from './Views/Error404/Error404';
-import Login from './Views/Login&Register/Login';
-import Register from './Views/Login&Register/Register';
-import Dashboard from './Views/Dashboard/Dashboard';
+import Error404 from './views/error404/Error404';
+import Login from './views/login&register/Login';
+import Register from './views/login&register/Register';
+import Dashboard from './views/dashboard/Dashboard';
 const App = () => {
   // Simulated Logged User
   const [isLogged, setLogged] = useState();

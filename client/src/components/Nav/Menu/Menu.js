@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import ThemeToggler from '../ThemeToggler/ThemeToggler';
+import ThemeToggler from '../themeToggler/ThemeToggler';
 // Style
 import {
   StyledStaticMenu,

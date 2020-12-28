@@ -1,5 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
-import { StyledButton } from '../../Components/Buttons/Buttons';
+import { StyledButton } from '../../components/buttons/Buttons';
 
 const error = keyframes`
   10%, 90% {

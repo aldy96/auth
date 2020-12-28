@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { withTheme } from 'styled-components';
 // Style Components
-import { Button } from '../../Components/Buttons/Buttons';
+import { Button } from '../../components/buttons/Buttons';
 import { StyledLoader, StyledWrapper } from './Dashboard.styled';
 
 const Dashboard = ({ setLogged, theme }) => {
