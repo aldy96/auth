@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import axios from 'axios';
 
 // Theme with GlobalStyle
 import AppTheme from './Theme/Theme';
@@ -15,7 +16,21 @@ import Register from './Views/Login&Register/Register';
 import Dashboard from './Views/Dashboard/Dashboard';
 const App = () => {
   // Simulated Logged User
-  const [isLogged, setLogged] = useState(false);
+  const [isLogged, setLogged] = useState();
+  useEffect(() => {
+    // Check if we have active user session
+    (async () => {
+      try {
+        // Get User Data
+        const { data } = await axios.get('/api/v1/auth');
+        setLogged(data.success);
+      } catch (error) {
+        // If error => logout user
+        // console.error({ error });
+        setLogged(false);
+      }
+    })();
+  }, []);
   return (
     <AppTheme>
       <Router>
@@ -32,6 +47,7 @@ const App = () => {
             </Route>
             <ProtectedRoute
               isLogged={isLogged}
+              setLogged={setLogged}
               path='/dashboard'
               component={Dashboard}
             />

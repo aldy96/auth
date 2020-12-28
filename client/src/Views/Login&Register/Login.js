@@ -16,14 +16,19 @@ import {
 
 const validEmail = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 
-const Login = ({ isLogged }) => {
+const Login = ({ isLogged, setLogged }) => {
   // State for Errors
   const [errorFromBackEnd, setErrorFromBackEnd] = useState();
 
   const onSubmit = async (formValues) => {
     try {
-      const res = await axios.post('/api/v1/auth/login', formValues);
-      console.log(res);
+      // Await for response
+      const response = await axios.post('/api/v1/auth/login', formValues);
+      // Clear Errors
+      setErrorFromBackEnd('');
+      // Of course better way is using redux
+      // SetLogged on true and automatically redirected to /dashboard
+      setLogged(response.data.success);
     } catch (error) {
       // Clear previus error
       setErrorFromBackEnd('');
@@ -119,18 +124,6 @@ const Login = ({ isLogged }) => {
               )}
             />
           </StyledFormWrapper>
-          <button
-            onClick={async () => {
-              try {
-                const res = await axios.get('/api/v1/user');
-                console.log(res);
-              } catch (error) {
-                console.log(error);
-              }
-            }}
-          >
-            check user
-          </button>
         </>
       )}
     </>
