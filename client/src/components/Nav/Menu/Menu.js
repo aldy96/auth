@@ -25,7 +25,11 @@ export const MobileMenu = ({ isLogged, open, setOpen }) => {
           </StyledMobileLink>
         </li>
         <li>
-          <StyledMobileLink exact to='/login' onClick={handleOpen}>
+          <StyledMobileLink
+            exact
+            to={isLogged ? '/dashboard' : '/login'}
+            onClick={handleOpen}
+          >
             {isLogged ? 'Account' : 'Log In'}
           </StyledMobileLink>
         </li>
@@ -44,8 +48,13 @@ export const StaticMenu = ({ isLogged }) => (
           Home
         </StyledStaticLink>
       </li>
+
       <li>
-        <StyledStaticLink exact secondary={`true`} to='/login'>
+        <StyledStaticLink
+          exact
+          secondary={`true`}
+          to={isLogged ? '/dashboard' : '/login'}
+        >
           {isLogged ? 'Account' : 'Log In'}
         </StyledStaticLink>
       </li>
