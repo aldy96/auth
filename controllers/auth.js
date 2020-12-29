@@ -68,11 +68,15 @@ exports.loginUser = (req, res, next) => {
 // @route    GET /api/v1/auth
 // @access   Public
 exports.checkSession = (req, res) => {
-  if (req.isAuthenticated()) {
-    //req.isAuthenticated() will return true if user is logged in
-    res.status(200).json({ success: true });
-  } else {
-    res.status(403).json({ success: false });
+  try {
+    if (req.isAuthenticated()) {
+      //req.isAuthenticated() will return true if user is logged in
+      res.status(200).json({ success: true });
+    } else {
+      res.status(200).json({ success: false });
+    }
+  } catch (error) {
+    res.status(500).json({ success: false, msg: 'Server Error' });
   }
 };
 

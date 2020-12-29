@@ -7,7 +7,7 @@
     "dev": "nodemon server.js",
     "start": "node server.js",
     "client": "cd client && npm start",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && INLINE_RUNTIME_CHUNK=false npm run build --prefix client"
   },
   "repository": {
     "type": "git",
@@ -30,11 +30,17 @@
     "colors": "^1.4.0",
     "connect-mongo": "^3.2.0",
     "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-mongo-sanitize": "^2.0.1",
     "express-session": "^1.17.1",
+    "helmet": "^4.3.1",
+    "hpp": "^0.2.3",
     "mongoose": "^5.11.8",
+    "morgan": "^1.10.0",
     "passport": "^0.4.1",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "xss-clean": "^0.1.1"
   }
 }

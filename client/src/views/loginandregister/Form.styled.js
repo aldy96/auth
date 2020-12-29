@@ -48,10 +48,12 @@ export const InputWrapper = styled.div`
   row-gap: 2vh;
   align-items: center;
   input {
-    min-height: 20px;
-    padding: 0.5vw;
+    font-size: 16px;
+    height: 40px;
+    padding: 0 1vw;
   }
   input::placeholder {
+    font-size: 16px;
     color: ${({ theme }) => theme.mainTextColor};
   }
 `;
